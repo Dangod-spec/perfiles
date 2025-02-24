@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Chicas Mágicas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Registro de Chicas Mágicas</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" id="nav-home">Inicio</a></li>
+                    <li><a href="#" id="nav-new">Registrar Nueva</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="content">
+            <!-- Esta sección cambiará dinámicamente según la vista actual -->
+            <div id="view-container">
+                <!-- Aquí se cargarán las diferentes vistas -->
+            </div>
+        </main>
+        
+        <footer>
+            <p>Registro de Chicas Mágicas © 2025</p>
+        </footer>
+    </div>
+
+    <!-- Plantillas HTML para las diferentes vistas -->
+    
+    <!-- Plantilla: Lista de chicas mágicas -->
+    <template id="template-list">
+        <div class="status-filter">
+            <h3>Filtrar por estado:</h3>
+            <select id="status-filter">
+                <option value="todas">Todas</option>
+                <option value="activa">Activa</option>
+                <option value="desaparecida">Desaparecida</option>
+                <option value="rescatada por la Ley de los Ciclos">Rescatada por la Ley de los Ciclos</option>
+            </select>
+        </div>
+        
+        <div class="magical-girl-list">
+            <h2>Lista de Chicas Mágicas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Ciudad de Origen</th>
+                        <th>Estado</th>
+                        <th>Fecha de Contrato</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="magical-girls-table">
+                    <!-- Filas generadas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <!-- Plantilla: Detalles de chica mágica -->
+    <template id="template-detail">
+        <div class="magical-girl-detail">
+            <h2>Detalles de <span id="detail-name"></span></h2>
+            
+            <div class="detail-container">
+                <div class="profile-section">
+                    <h3>Información Personal</h3>
+                    <p><strong>Nombre:</strong> <span id="profile-name"></span></p>
+                    <p><strong>Edad:</strong> <span id="profile-age"></span></p>
+                    <p><strong>Ciudad de Origen:</strong> <span id="profile-city"></span></p>
+                    <p><strong>Estado Actual:</strong> <span id="profile-status" class="status"></span></p>
+                    <p><strong>Fecha de Contrato:</strong> <span id="profile-date"></span></p>
+                </div>
+                
+                <div class="status-history-section">
+                    <h3>Historial de Estados</h3>
+                    <ul id="status-history-list">
+                        <!-- Ítems generados dinámicamente -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="actions-section">
+                <h3>Cambiar Estado</h3>
+                <div class="status-buttons">
+                    <button id="status-active" class="status-button active">Activa</button>
+                    <button id="status-missing" class="status-button missing">Desaparecida</button>
+                    <button id="status-rescued" class="status-button rescued">Rescatada por la Ley de los Ciclos</button>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <a href="#" id="btn-edit" class="edit-button">Editar Información</a>
+                    <button id="btn-delete" class="delete-button">Eliminar Registro</button>
+                    <a href="#" id="btn-back" class="back-button">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Plantilla: Formulario de chica mágica -->
+    <template id="template-form">
+        <div class="magical-girl-form">
+            <h2 id="form-title">Registrar Chica Mágica</h2>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            
+            <form id="magical-girl-form">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Edad:</label>
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="8"
+                        max="18"
+                        required
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="originCity">Ciudad de Origen:</label>
+                    <input
+                        type="text"
+                        id="originCity"
+                        name="originCity"
+                        required
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Estado:</label>
+                    <select
+                        id="status"
+                        name="status"
+                        required
+                    >
+                        <option value="activa">Activa</option>
+                        <option value="desaparecida">Desaparecida</option>
+                        <option value="rescatada por la Ley de los Ciclos">Rescatada por la Ley de los Ciclos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contractDate">Fecha de Contrato:</label>
+                    <input
+                        type="date"
+                        id="contractDate"
+                        name="contractDate"
+                        required
+                    />
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="form-submit-btn">Registrar</button>
+                    <button type="button" id="form-cancel-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </template>
+
+    <!-- Carga del JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
